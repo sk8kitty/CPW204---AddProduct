@@ -7,6 +7,74 @@
     <title>Add Product Form</title>
 </head>
 <body>
+    <h1>Add Videogame</h1>
+    <div id="validation-summary">
+        <p>Errors go here...</p>
+    </div>
 
+    <form>
+        <label for="title">Title:</label>
+        <input id="title" type="text">
+        <br>
+
+        <label for="developer">Developer:</label>
+        <input id="developer" type="text">
+        <br>
+
+        <label for="date">Release Date:</label>
+        <input id="date" type="date">
+        <br>
+
+        <label for="price">Price:</label>
+        <input id="price" type="number">
+        <br>
+
+        <label for="platform">Platform?</label>
+        <select id="platform">
+            <option>Choose a platform...</option>
+            <option>Browser</option>
+            <option>Mobile</option>
+            <option>PC</option>
+            <option>Xbox 360</option>
+            <option>Xbox One</option>
+            <option>Xbox Series X|S</option>
+            <option>Playstation 1</option>
+            <option>Playstation 2</option>
+            <option>Playstation 3</option>
+            <option>Playstation 4</option>
+            <option>Playstation 5</option>
+            <option>NES</option>
+            <option>SNES</option>
+            <option>N64</option>
+            <option>GameCube</option>
+            <option>GameBoy</option>
+            <option>Wii</option>
+            <option>Wii U</option>
+            <option>Nintendo DS</option>
+            <option>Nintendo DSi</option>
+            <option>Nintendo 3DS</option>
+            <option>Nintendo 2DS</option>
+            <option>Nintendo Switch</option>
+            <option>Virtual Reality</option>
+        </select>
+
+        <label for="rating">Rating:</label>
+        <select id="rating">
+            <option>Choose a rating...</option>
+            <option>(EC) Early Childhood</option>
+            <option>(E) Everyone</option>
+            <option>(E10+) Everyone 10+</option>
+            <option>(T) Teen</option>
+            <option>(M) Mature 17+</option>
+            <option>(AO) Adult Only 18+</option>
+        </select>
+        <br>
+
+        <label for="online">Online Only?</label>
+        <input id="online" type="checkbox">
+        <br>
+
+        <input type="button" value="Add New Videogame">
+    </form>
 </body>
 </html>
