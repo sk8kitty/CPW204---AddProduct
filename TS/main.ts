@@ -27,7 +27,7 @@ function getVideoGame():VideoGame {
     game.title = (<HTMLInputElement>document.getElementById("title")).value;
     game.developer = (<HTMLInputElement>document.getElementById("developer")).value;
     game.price = parseFloat((<HTMLInputElement>document.getElementById("price")).value);
-    game.releaseDate = (<HTMLInputElement>document.getElementById("release-date")).value;
+    game.releaseDate = (<HTMLSelectElement>document.getElementById("date")).value;
     game.rating = (<HTMLSelectElement>document.getElementById("rating")).value;
     game.platform = (<HTMLSelectElement>document.getElementById("platform")).value;
     game.digital = (<HTMLInputElement>document.getElementById("digital")).checked;
