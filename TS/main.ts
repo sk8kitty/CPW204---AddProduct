@@ -1,10 +1,10 @@
 class VideoGame {
     title:string;
     developer:string;
-    releaseDate:Date;
     price:number;
-    platform:string;
+    releaseDate:string;
     rating:string;
+    platform:string;
     digital:boolean;
     physical:boolean;
 }
@@ -22,10 +22,18 @@ function addVideoGame():void {
 }
 
 function getVideoGame():VideoGame {
-    // create object
-    // populate with data
-    // return it
-    return 
+    let game = new VideoGame();
+    
+    game.title = (<HTMLInputElement>document.getElementById("title")).value;
+    game.developer = (<HTMLInputElement>document.getElementById("developer")).value;
+    game.price = parseFloat((<HTMLInputElement>document.getElementById("price")).value);
+    game.releaseDate = (<HTMLInputElement>document.getElementById("release-date")).value;
+    game.rating = (<HTMLSelectElement>document.getElementById("rating")).value;
+    game.platform = (<HTMLSelectElement>document.getElementById("platform")).value;
+    game.digital = (<HTMLInputElement>document.getElementById("digital")).checked;
+    game.physical = (<HTMLInputElement>document.getElementById("physical")).checked;
+
+    return game;
 }
 
 function displayVideoGame(game:VideoGame):void {
