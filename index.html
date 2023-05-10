@@ -32,7 +32,7 @@
 
         <label for="rating">Rating:</label>
         <select id="rating">
-            <option>Choose a rating...</option>
+            <option selected disabled>Choose a rating...</option>
             <option>(EC) Early Childhood</option>
             <option>(E) Everyone</option>
             <option>(E10+) Everyone 10+</option>
@@ -44,7 +44,7 @@
 
         <label for="platform">Platform?</label>
         <select id="platform">
-            <option>Choose a platform...</option>
+            <option selected disabled>Choose a platform...</option>
             <option>Browser</option>
             <option>Mobile</option>
             <option>PC</option>
@@ -80,6 +80,8 @@
         <br>
 
         <input type="button" value="Add New Videogame">
+
+        <div id="display"></div>
     </form>
 
     <script src="js/main.js"></script>
