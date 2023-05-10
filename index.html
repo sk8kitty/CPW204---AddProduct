@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product Form</title>
+    <link rel="stylesheet" href="CSS/site.css">
 </head>
 <body>
-    <h1>Add Videogame</h1>
+    <h1>Add Video Game</h1>
     <div id="validation-summary">
         <p>Errors go here...</p>
     </div>
@@ -26,7 +27,7 @@
         <br>
 
         <label for="price">Price:</label>
-        <input id="price" type="number">
+        <input id="price" type="number" step="0.01">
         <br>
 
         <label for="platform">Platform?</label>
@@ -70,14 +71,16 @@
         </select>
         <br>
 
-        <label for="online">Online?</label>
+        <label for="online">Digital? (ex. Steam download or product key)</label>
         <input id="online" type="checkbox">
         <br>
-        <label for="online">Disc/cartridge?</label>
+        <label for="online">Physical? (ex. disc or cartridge)</label>
         <input id="online" type="checkbox">
         <br>
 
         <input type="button" value="Add New Videogame">
     </form>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
