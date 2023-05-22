@@ -9,8 +9,10 @@
 </head>
 <body>
     <h1>Add Video Game</h1>
-    <div id="validation-summary">
-        <p>Errors go here...</p>
+    <div>
+        <ul id="validation-summary">
+            
+        </ul>
     </div>
 
     <form>
@@ -32,7 +34,7 @@
 
         <label for="rating">Rating:</label>
         <select id="rating">
-            <option selected disabled>Choose a rating...</option>
+            <option value="default" selected disabled>Choose a rating...</option>
             <option>(EC) Early Childhood</option>
             <option>(E) Everyone</option>
             <option>(E10+) Everyone 10+</option>
@@ -44,7 +46,7 @@
 
         <label for="platform">Platform?</label>
         <select id="platform">
-            <option selected disabled>Choose a platform...</option>
+            <option value="default" selected disabled>Choose a platform...</option>
             <option>Browser</option>
             <option>Mobile</option>
             <option>PC</option>
@@ -75,6 +77,8 @@
         <label for="digital">Digital? (ex. Steam download or product key)</label>
         <input id="digital" type="checkbox">
         <br>
+
+        </span>
         <label for="physical">Physical? (ex. disc or cartridge)</label>
         <input id="physical" type="checkbox">
         <br>

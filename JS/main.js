@@ -8,8 +8,9 @@ window.onload = function () {
     addBtn.onclick = addVideoGame;
 };
 function addVideoGame() {
-    if (isDataValid()) {
-        var game = getVideoGame();
+    document.getElementById("validation-summary").innerText = "";
+    var game = getVideoGame();
+    if (isDataValid(game)) {
         displayVideoGame(game);
     }
 }
@@ -42,11 +43,46 @@ function displayVideoGame(game) {
     var gameAuthor = document.createElement("h3");
     gameAuthor.innerText = "by ".concat(game.developer);
     var gameInfo = document.createElement("p");
-    gameInfo.innerText = "RETAIL PRICE: ".concat(game.price, " \n\n                            RELEASE DATE: ").concat(game.releaseDate, " \n\n                            RATING: ").concat(game.rating, " \n\n                            PLATFORM: ").concat(game.platform, " \n\n                            TYPE: ").concat(actuality);
+    gameInfo.innerText = "RETAIL PRICE: $".concat(game.price, " \n\n                            RELEASE DATE: ").concat(game.releaseDate, " \n\n                            RATING: ").concat(game.rating, " \n\n                            PLATFORM: ").concat(game.platform, " \n\n                            TYPE: ").concat(actuality);
     displayDiv.appendChild(gameHeading);
     displayDiv.appendChild(gameAuthor);
     displayDiv.appendChild(gameInfo);
 }
-function isDataValid() {
-    return true;
+function isDataValid(game) {
+    var validity = true;
+    if (!game.title) {
+        validity = false;
+        addError("Game title is required!");
+    }
+    if (!game.developer || !isNaN(parseInt(game.developer))) {
+        validity = false;
+        addError("Game developer is required!");
+    }
+    if (!game.price) {
+        validity = false;
+        addError("Price is required!");
+    }
+    if (!game.releaseDate) {
+        validity = false;
+        addError("Release date is required!");
+    }
+    if (!game.rating || game.rating == "") {
+        validity = false;
+        addError("Rating input is required!");
+    }
+    if (!game.platform || game.platform == "") {
+        validity = false;
+        addError("Platform input is required!");
+    }
+    if (!game.digital && !game.physical) {
+        validity = false;
+        addError("Digital or physical status is required!");
+    }
+    return validity;
+}
+function addError(errorMsg) {
+    var errorSum = document.getElementById("validation-summary");
+    var errorItem = document.createElement("li");
+    errorItem.innerText = errorMsg;
+    errorSum.appendChild(errorItem);
 }
