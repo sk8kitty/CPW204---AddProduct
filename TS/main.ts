@@ -46,17 +46,18 @@ function getVideoGame():VideoGame {
 
 function displayVideoGame(game:VideoGame):void {
     let  displayDiv = document.getElementById("display");
+    displayDiv.classList.add("displayedGame");
 
     // storing a game's values as a single string, which is assigned a variable to be used in the display below
     let actuality = "";
     if (game.digital && game.physical) {
-        actuality = "Digital & physical."
+        actuality = "Digital & Physical"
     }
     else if (game.digital) {
-        actuality = "Digital-only."
+        actuality = "Digital-only"
     }
     else if (game.physical) {
-        actuality = "Phyiscal-only."
+        actuality = "Phyiscal-only"
     }
 
     // using backticks `` and ${} is a brisk way of displaying variable values in text because you don't have to concatenate 
@@ -68,7 +69,7 @@ function displayVideoGame(game:VideoGame):void {
 
     let gameInfo = document.createElement("p");
     gameInfo.innerText = `RETAIL PRICE: $${game.price} \n
-                            RELEASE DATE: ${game.releaseDate} \n
+                            RELEASE DATE: ${formatDate(game.releaseDate)} \n
                             RATING: ${game.rating} \n
                             PLATFORM: ${game.platform} \n
                             TYPE: ${actuality}`;
@@ -104,12 +105,12 @@ function isDataValid(game:VideoGame):boolean {
         addError("Release date is required!");
     }
 
-    if (!game.rating || game.rating == "") {
+    if (game.rating == "default") {
         validity = false;
         addError("Rating input is required!");
     }
 
-    if (!game.platform || game.platform == "") {
+    if (game.platform == "default") {
         validity = false;
         addError("Platform input is required!");
     }
@@ -128,4 +129,20 @@ function addError(errorMsg:string) {
     let errorItem = document.createElement("li");
     errorItem.innerText = errorMsg;
     errorSum.appendChild(errorItem);
+}
+
+// taken from my ToDoList assignment
+function formatDate(ogDate:string):string {
+    // arrays containing the written-out days and months for use in converting date format
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+ 
+    let splitDate = ogDate.split("-");
+    let year = splitDate[0];
+    let month = splitDate[1];
+    let day = splitDate[2];
+
+    // using that array to create a Date object in order to access Date methods and manipulate the formatting
+    let curr = new Date(`${month}/${day}/${year}`);
+    return (months[curr.getMonth()] + " " + curr.getDate()  + ", " + curr.getFullYear());
 }

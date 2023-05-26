@@ -28,22 +28,23 @@ function getVideoGame() {
 }
 function displayVideoGame(game) {
     var displayDiv = document.getElementById("display");
+    displayDiv.classList.add("displayedGame");
     var actuality = "";
     if (game.digital && game.physical) {
-        actuality = "Digital & physical.";
+        actuality = "Digital & Physical";
     }
     else if (game.digital) {
-        actuality = "Digital-only.";
+        actuality = "Digital-only";
     }
     else if (game.physical) {
-        actuality = "Phyiscal-only.";
+        actuality = "Phyiscal-only";
     }
     var gameHeading = document.createElement("h2");
     gameHeading.innerText = game.title;
     var gameAuthor = document.createElement("h3");
     gameAuthor.innerText = "by ".concat(game.developer);
     var gameInfo = document.createElement("p");
-    gameInfo.innerText = "RETAIL PRICE: $".concat(game.price, " \n\n                            RELEASE DATE: ").concat(game.releaseDate, " \n\n                            RATING: ").concat(game.rating, " \n\n                            PLATFORM: ").concat(game.platform, " \n\n                            TYPE: ").concat(actuality);
+    gameInfo.innerText = "RETAIL PRICE: $".concat(game.price, " \n\n                            RELEASE DATE: ").concat(formatDate(game.releaseDate), " \n\n                            RATING: ").concat(game.rating, " \n\n                            PLATFORM: ").concat(game.platform, " \n\n                            TYPE: ").concat(actuality);
     displayDiv.appendChild(gameHeading);
     displayDiv.appendChild(gameAuthor);
     displayDiv.appendChild(gameInfo);
@@ -66,11 +67,11 @@ function isDataValid(game) {
         validity = false;
         addError("Release date is required!");
     }
-    if (!game.rating || game.rating == "") {
+    if (game.rating == "default") {
         validity = false;
         addError("Rating input is required!");
     }
-    if (!game.platform || game.platform == "") {
+    if (game.platform == "default") {
         validity = false;
         addError("Platform input is required!");
     }
@@ -85,4 +86,14 @@ function addError(errorMsg) {
     var errorItem = document.createElement("li");
     errorItem.innerText = errorMsg;
     errorSum.appendChild(errorItem);
+}
+function formatDate(ogDate) {
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var splitDate = ogDate.split("-");
+    var year = splitDate[0];
+    var month = splitDate[1];
+    var day = splitDate[2];
+    var curr = new Date("".concat(month, "/").concat(day, "/").concat(year));
+    return (months[curr.getMonth()] + " " + curr.getDate() + ", " + curr.getFullYear());
 }
