@@ -28,7 +28,6 @@ function getVideoGame() {
 }
 function displayVideoGame(game) {
     var displayDiv = document.getElementById("display");
-    displayDiv.classList.add("displayedGame");
     var actuality = "";
     if (game.digital && game.physical) {
         actuality = "Digital & Physical";
@@ -39,49 +38,61 @@ function displayVideoGame(game) {
     else if (game.physical) {
         actuality = "Phyiscal-only";
     }
+    var singleGameDiv = document.createElement("div");
+    singleGameDiv.classList.add("displayedGame");
     var gameHeading = document.createElement("h2");
     gameHeading.innerText = game.title;
     var gameAuthor = document.createElement("h3");
-    gameAuthor.innerText = "by ".concat(game.developer);
+    gameAuthor.innerText = "from ".concat(game.developer);
     var gameInfo = document.createElement("p");
-    gameInfo.innerText = "RETAIL PRICE: $".concat(game.price, " \n\n                            RELEASE DATE: ").concat(formatDate(game.releaseDate), " \n\n                            RATING: ").concat(game.rating, " \n\n                            PLATFORM: ").concat(game.platform, " \n\n                            TYPE: ").concat(actuality);
-    displayDiv.appendChild(gameHeading);
-    displayDiv.appendChild(gameAuthor);
-    displayDiv.appendChild(gameInfo);
+    gameInfo.innerHTML = "<span>RETAIL PRICE:</span> $".concat((game.price).toFixed(2), "         <br><br>\n                            <span>RELEASE DATE:</span> ").concat(formatDate(game.releaseDate), "  <br><br>\n                            <span>RATING:</span> ").concat(game.rating, "                         <br><br>\n                            <span>PLATFORM:</span> ").concat(game.platform, "                     <br><br>\n                            <span>TYPE:</span> ").concat(actuality);
+    singleGameDiv.appendChild(gameHeading);
+    singleGameDiv.appendChild(gameAuthor);
+    singleGameDiv.appendChild(gameInfo);
+    displayDiv.appendChild(singleGameDiv);
+    document.getElementById("title").value = "";
+    document.getElementById("developer").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("rating").value = "default";
+    document.getElementById("platform").value = "default";
+    document.getElementById("digital").checked = false;
+    document.getElementById("physical").checked = false;
 }
 function isDataValid(game) {
     var validity = true;
     if (!game.title) {
         validity = false;
-        addError("Game title is required!");
+        addError("Game title");
     }
     if (!game.developer || !isNaN(parseInt(game.developer))) {
         validity = false;
-        addError("Game developer is required!");
+        addError("Game developer");
     }
     if (!game.price) {
         validity = false;
-        addError("Price is required!");
+        addError("Price");
     }
     if (!game.releaseDate) {
         validity = false;
-        addError("Release date is required!");
+        addError("Release date");
     }
     if (game.rating == "default") {
         validity = false;
-        addError("Rating input is required!");
+        addError("Rating input");
     }
     if (game.platform == "default") {
         validity = false;
-        addError("Platform input is required!");
+        addError("Platform input");
     }
     if (!game.digital && !game.physical) {
         validity = false;
-        addError("Digital or physical status is required!");
+        addError("Digital or physical status");
     }
     return validity;
 }
 function addError(errorMsg) {
+    document.getElementById("validation-label").innerText = "Missing required fields:";
     var errorSum = document.getElementById("validation-summary");
     var errorItem = document.createElement("li");
     errorItem.innerText = errorMsg;

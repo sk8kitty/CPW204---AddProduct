@@ -4,90 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product Form</title>
+    <title>Video Game Library</title>
     <link rel="stylesheet" href="CSS/site.css">
 </head>
 <body>
-    <h1>Add Video Game</h1>
-    <div>
-        <ul id="validation-summary">
+    <div id="headerDiv" class="header">
+        <h1>Video Game Library</h1>
+        <div>
+            <h3 id="validation-label"></h3>
+            <ul id="validation-summary">
+        
+            </ul>
+        </div>
+
+        <form>
+            <input id="title" type="text" placeholder="Title...">
+
+            <input id="developer" type="text" placeholder="Developer...">
+
+            <input id="price" type="number" step="0.01" placeholder="Price...">
+            <br>
+
+
+            <select id="rating">
+                <option value="default" selected disabled>Choose a rating...</option>
+                <option>(EC) Early Childhood</option>
+                <option>(E) Everyone</option>
+                <option>(E10+) Everyone 10+</option>
+                <option>(T) Teen</option>
+                <option>(M) Mature 17+</option>
+                <option>(AO) Adult Only 18+</option>
+            </select>
+
+            <select id="platform">
+                <option value="default" selected disabled>Choose a platform...</option>
+                <option>Browser</option>
+                <option>Mobile</option>
+                <option>PC</option>
+                <option>Xbox 360</option>
+                <option>Xbox One</option>
+                <option>Xbox Series X|S</option>
+                <option>Playstation 1</option>
+                <option>Playstation 2</option>
+                <option>Playstation 3</option>
+                <option>Playstation 4</option>
+                <option>Playstation 5</option>
+                <option>NES</option>
+                <option>SNES</option>
+                <option>N64</option>
+                <option>GameCube</option>
+                <option>GameBoy</option>
+                <option>Wii</option>
+                <option>Wii U</option>
+                <option>Nintendo DS</option>
+                <option>Nintendo DSi</option>
+                <option>Nintendo 3DS</option>
+                <option>Nintendo 2DS</option>
+                <option>Nintendo Switch</option>
+                <option>Virtual Reality</option>
+            </select>
+            <br>
             
-        </ul>
+
+            <label for="date">Release Date:</label>
+            <input id="date" type="date">
+            <br>
+
+            <input id="digital" type="checkbox">
+            <label for="digital">Digital? (ex. Steam download or product key)</label>
+            <br>
+
+            <input id="physical" type="checkbox">
+            <label for="physical">Physical? (ex. disc or cartridge)</label>
+            <br>
+        </form>
+        
+        <input type="button" id="addBtn" value="Add Video Game">
     </div>
-
-    <form>
-        <label for="title">Title:</label>
-        <input id="title" type="text">
-        <br>
-
-        <label for="developer">Developer:</label>
-        <input id="developer" type="text">
-        <br>
-
-        <label for="price">Price:</label>
-        <input id="price" type="number" step="0.01">
-        <br>
-
-        <label for="date">Release Date:</label>
-        <input id="date" type="date">
-        <br>
-
-        <label for="rating">Rating:</label>
-        <select id="rating">
-            <option value="default" selected disabled>Choose a rating...</option>
-            <option>(EC) Early Childhood</option>
-            <option>(E) Everyone</option>
-            <option>(E10+) Everyone 10+</option>
-            <option>(T) Teen</option>
-            <option>(M) Mature 17+</option>
-            <option>(AO) Adult Only 18+</option>
-        </select>
-        <br>
-
-        <label for="platform">Platform?</label>
-        <select id="platform">
-            <option value="default" selected disabled>Choose a platform...</option>
-            <option>Browser</option>
-            <option>Mobile</option>
-            <option>PC</option>
-            <option>Xbox 360</option>
-            <option>Xbox One</option>
-            <option>Xbox Series X|S</option>
-            <option>Playstation 1</option>
-            <option>Playstation 2</option>
-            <option>Playstation 3</option>
-            <option>Playstation 4</option>
-            <option>Playstation 5</option>
-            <option>NES</option>
-            <option>SNES</option>
-            <option>N64</option>
-            <option>GameCube</option>
-            <option>GameBoy</option>
-            <option>Wii</option>
-            <option>Wii U</option>
-            <option>Nintendo DS</option>
-            <option>Nintendo DSi</option>
-            <option>Nintendo 3DS</option>
-            <option>Nintendo 2DS</option>
-            <option>Nintendo Switch</option>
-            <option>Virtual Reality</option>
-        </select>
-        <br>
-
-        <label for="digital">Digital? (ex. Steam download or product key)</label>
-        <input id="digital" type="checkbox">
-        <br>
-
-        </span>
-        <label for="physical">Physical? (ex. disc or cartridge)</label>
-        <input id="physical" type="checkbox">
-        <br>
-
-        <input type="button" value="Add Video Game">
-
-        <div id="display"></div>
-    </form>
-
+    <div id="display"></div>
     <script src="js/main.js"></script>
 </body>
 </html>

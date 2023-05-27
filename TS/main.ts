@@ -46,7 +46,6 @@ function getVideoGame():VideoGame {
 
 function displayVideoGame(game:VideoGame):void {
     let  displayDiv = document.getElementById("display");
-    displayDiv.classList.add("displayedGame");
 
     // storing a game's values as a single string, which is assigned a variable to be used in the display below
     let actuality = "";
@@ -61,22 +60,38 @@ function displayVideoGame(game:VideoGame):void {
     }
 
     // using backticks `` and ${} is a brisk way of displaying variable values in text because you don't have to concatenate 
+    let singleGameDiv = document.createElement("div");
+    singleGameDiv.classList.add("displayedGame");
+
     let gameHeading = document.createElement("h2");
     gameHeading.innerText = game.title;
 
     let gameAuthor = document.createElement("h3");
-    gameAuthor.innerText = `by ${game.developer}`;
+    gameAuthor.innerText = `from ${game.developer}`;
 
     let gameInfo = document.createElement("p");
-    gameInfo.innerText = `RETAIL PRICE: $${game.price} \n
-                            RELEASE DATE: ${formatDate(game.releaseDate)} \n
-                            RATING: ${game.rating} \n
-                            PLATFORM: ${game.platform} \n
-                            TYPE: ${actuality}`;
+    gameInfo.innerHTML =   `<span>RETAIL PRICE:</span> $${(game.price).toFixed(2)}         <br><br>
+                            <span>RELEASE DATE:</span> ${formatDate(game.releaseDate)}  <br><br>
+                            <span>RATING:</span> ${game.rating}                         <br><br>
+                            <span>PLATFORM:</span> ${game.platform}                     <br><br>
+                            <span>TYPE:</span> ${actuality}`;
                       
-    displayDiv.appendChild(gameHeading);
-    displayDiv.appendChild(gameAuthor);
-    displayDiv.appendChild(gameInfo);
+    singleGameDiv.appendChild(gameHeading);
+    singleGameDiv.appendChild(gameAuthor);
+    singleGameDiv.appendChild(gameInfo);
+
+    displayDiv.appendChild(singleGameDiv);
+
+    
+    // clearing input fields
+    (<HTMLInputElement>document.getElementById("title")).value = "";
+    (<HTMLInputElement>document.getElementById("developer")).value = "";
+    (<HTMLInputElement>document.getElementById("price")).value = "";
+    (<HTMLInputElement>document.getElementById("date")).value = "";
+    (<HTMLInputElement>document.getElementById("rating")).value = "default";
+    (<HTMLInputElement>document.getElementById("platform")).value = "default";
+    (<HTMLInputElement>document.getElementById("digital")).checked = false;
+    (<HTMLInputElement>document.getElementById("physical")).checked = false;
 }
 
 
@@ -85,39 +100,39 @@ function isDataValid(game:VideoGame):boolean {
 
     if (!game.title) {
         validity = false;
-        addError("Game title is required!");
+        addError("Game title");
     }
 
     if (!game.developer || !isNaN(parseInt(game.developer))) {
         validity = false;
-        addError("Game developer is required!");
+        addError("Game developer");
     }
     
     // since I used a number-type input, I don't need to check for isNaN because the user can ONLY enter numbers
     if (!game.price) {
         validity = false;
-        addError("Price is required!");
+        addError("Price");
     }
 
     // since I used a date-type input, the user can ONLY enter a date and I don't have to do extra checks
     if (!game.releaseDate) {
         validity = false;
-        addError("Release date is required!");
+        addError("Release date");
     }
 
     if (game.rating == "default") {
         validity = false;
-        addError("Rating input is required!");
+        addError("Rating input");
     }
 
     if (game.platform == "default") {
         validity = false;
-        addError("Platform input is required!");
+        addError("Platform input");
     }
 
     if (!game.digital && !game.physical) {
         validity = false;
-        addError("Digital or physical status is required!");
+        addError("Digital or physical status");
     }
 
     return validity;
@@ -125,11 +140,14 @@ function isDataValid(game:VideoGame):boolean {
 
 
 function addError(errorMsg:string) {
+    document.getElementById("validation-label").innerText = "Missing required fields:"
+
     let errorSum =  document.getElementById("validation-summary");
     let errorItem = document.createElement("li");
     errorItem.innerText = errorMsg;
     errorSum.appendChild(errorItem);
 }
+
 
 // taken from my ToDoList assignment
 function formatDate(ogDate:string):string {
